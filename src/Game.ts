@@ -53,7 +53,7 @@ export class Game {
     const rotationInput = this.inputManager.getRotationInput();
 
     // Update plane
-    // this.planeController.update(deltaTime, rotationInput);
+    this.planeController.update(deltaTime, rotationInput);
 
     // Update camera
     const planePosition = this.planeController.getWorldPosition();

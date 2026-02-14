@@ -6,7 +6,7 @@ export class CameraController {
   
   // Camera parameters
   distance: number = 8; // Distance behind plane
-  height: number = 3;   // Height above plane
+  height: number = 0.5;   // Height above plane
   dampingFactor: number = 0.1; // Smooth following (0-1, lower = smoother)
 
   constructor(camera: THREE.PerspectiveCamera) {
@@ -35,13 +35,16 @@ export class CameraController {
     this.camera.position.lerp(this.targetPosition, this.dampingFactor);
 
     // Look at a point ahead of the plane
-    const lookAheadDistance = 5;
+    const lookAheadDistance = 1;
     const lookTarget = planePosition
       .clone()
       .add(planeForward.clone().multiplyScalar(lookAheadDistance))
       .add(upOffset.clone().multiplyScalar(0.5));
 
     this.camera.lookAt(lookTarget);
+
+    // Align camera's up vector with the plane's up direction to prevent flipping
+    this.camera.up.copy(planeUp);
   }
 }
 

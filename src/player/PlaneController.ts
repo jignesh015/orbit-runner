@@ -7,7 +7,7 @@ export class PlaneController {
   planet: Planet;
   
   // Movement parameters
-  forwardSpeed: number = 30; // Units per second
+  forwardSpeed: number = 2; // Units per second
   rotationSpeed: number = 3; // Radians per second
   heightAboveSurface: number = 1.5;
 

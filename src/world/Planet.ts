@@ -3,9 +3,12 @@ import * as THREE from 'three';
 export class Planet {
   mesh: THREE.Mesh;
   radius: number;
+  
+  private textureLoader = new THREE.TextureLoader();
 
   constructor(radius: number = 10) {
     this.radius = radius;
+    this.textureLoader = new THREE.TextureLoader();
 
     // Create sphere geometry
     const geometry = new THREE.SphereGeometry(
@@ -13,10 +16,13 @@ export class Planet {
       64, // width segments
       64  // height segments
     );
+    
+    const texture = this.textureLoader.load('/assets/earth_map.svg');
 
     // Create material with some visual interest
     const material = new THREE.MeshPhongMaterial({
-      color: 0x2ecc71,
+        map: texture,
+      color: 0xffffff,
       emissive: 0x0a4d0a,
       shininess: 100,
       flatShading: false,
